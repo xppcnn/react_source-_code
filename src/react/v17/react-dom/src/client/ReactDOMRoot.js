@@ -98,6 +98,7 @@ ReactDOMRoot.prototype.render = ReactDOMBlockingRoot.prototype.render = function
       }
     }
   }
+  console.log('render')
   updateContainer(children, root, null, null);
 };
 
@@ -170,7 +171,7 @@ function createRootImpl(
 }
 
 export function createRoot(
-  container: Container,
+  container: Container, // div#root
   options?: RootOptions,
 ): RootType {
   invariant(

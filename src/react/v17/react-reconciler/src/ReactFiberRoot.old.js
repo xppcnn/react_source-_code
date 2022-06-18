@@ -95,7 +95,7 @@ export function createFiberRoot(
   // stateNode is any.
   const uninitializedFiber = createHostRootFiber(tag);
   root.current = uninitializedFiber;
-  uninitializedFiber.stateNode = root;
+  uninitializedFiber.stateNode = root; // FiberRootNode
 
   initializeUpdateQueue(uninitializedFiber);
 
