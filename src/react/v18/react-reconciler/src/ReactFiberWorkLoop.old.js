@@ -732,12 +732,21 @@ export function isInterleavedUpdate(fiber: Fiber, lane: Lane) {
       // defensive coding measure in case a new update comes in between when
       // rendering has finished and when the interleaved updates are transferred
       // to the main queue.
+      // 如果交错更新队列还没有被清除，那么
+      // 我们也应该把它当作一个交错更新。这也是一种
+      // 防御性编码措施，以防在渲染结束和交错更新之间出现新的更新。
+      // 渲染结束后，交错式更新被转移到了
+      // 到主队列。
       hasInterleavedUpdates()) &&
     (fiber.mode & ConcurrentMode) !== NoMode &&
     // If this is a render phase update (i.e. UNSAFE_componentWillReceiveProps),
     // then don't treat this as an interleaved update. This pattern is
     // accompanied by a warning but we haven't fully deprecated it yet. We can
     // remove once the deferRenderPhaseUpdateToNextBatch flag is enabled.
+    // 如果这是一个渲染阶段的更新（即UNSAFE_componentWillReceiveProps）。
+    // 那么就不要将其视为交错更新。这种模式是
+    // 伴随着一个警告，但我们还没有完全废除它。我们可以
+    //一旦启用deferRenderPhaseUpdateToNextBatch标志就可以删除
     (deferRenderPhaseUpdateToNextBatch ||
       (executionContext & RenderContext) === NoContext)
   );

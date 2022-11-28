@@ -206,6 +206,7 @@ export const mediaEventTypes: Array<DOMEventName> = [
 // We should not delegate these events to the container, but rather
 // set them on the actual target element itself. This is primarily
 // because these events do not consistently bubble in the DOM.
+// 一下事件不一定冒泡 所以不能挂载到root
 export const nonDelegatedEvents: Set<DOMEventName> = new Set([
   'cancel',
   'close',

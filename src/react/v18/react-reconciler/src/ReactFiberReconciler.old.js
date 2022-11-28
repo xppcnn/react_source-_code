@@ -318,8 +318,8 @@ export function createHydrationContainer(
 }
 
 export function updateContainer(
-  element: ReactNodeList,
-  container: OpaqueRoot,
+  element: ReactNodeList, // div#root
+  container: OpaqueRoot, // fiber root
   parentComponent: ?React$Component<any, any>,
   callback: ?Function,
 ): Lane {
@@ -328,13 +328,13 @@ export function updateContainer(
   }
   const current = container.current;
   const eventTime = requestEventTime();
-  const lane = requestUpdateLane(current);
+  const lane = requestUpdateLane(current); // 按照优先级申请 https://juejin.cn/post/7033052877140525092
 
   if (enableSchedulingProfiler) {
     markRenderScheduled(lane);
   }
 
-  const context = getContextForSubtree(parentComponent);
+  const context = getContextForSubtree(parentComponent); // 从父组件获取context
   if (container.context === null) {
     container.context = context;
   } else {
@@ -378,7 +378,7 @@ export function updateContainer(
   }
 
   enqueueUpdate(current, update, lane);
-  const root = scheduleUpdateOnFiber(current, lane, eventTime);
+  const root = scheduleUpdateOnFiber(current, lane, eventTime); //进入Scheduler流程
   if (root !== null) {
     entangleTransitions(root, current, lane);
   }

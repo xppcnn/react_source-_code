@@ -145,6 +145,8 @@ export function createFiberRoot(
   onRecoverableError: null | ((error: mixed) => void),
   transitionCallbacks: null | TransitionTracingCallbacks,
 ): FiberRoot {
+
+  // 一个fiber root
   const root: FiberRoot = (new FiberRootNode(
     containerInfo,
     tag,
@@ -167,7 +169,9 @@ export function createFiberRoot(
     isStrictMode,
     concurrentUpdatesByDefaultOverride,
   );
+  // 将 root fiber 指向 fiber root
   root.current = uninitializedFiber;
+  // 将fiber root 存储在 current root fiber
   uninitializedFiber.stateNode = root;
 
   if (enableCache) {

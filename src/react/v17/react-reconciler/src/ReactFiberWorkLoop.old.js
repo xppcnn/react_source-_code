@@ -592,7 +592,7 @@ export function scheduleUpdateOnFiber(
   // priority as an argument to that function and this one.
   // 根据Scheduler的优先级获取到对应的React优先级
   const priorityLevel = getCurrentPriorityLevel();
-
+    // 同步
   if (lane === SyncLane) {
     if (
       // Check if we're inside unbatchedUpdates

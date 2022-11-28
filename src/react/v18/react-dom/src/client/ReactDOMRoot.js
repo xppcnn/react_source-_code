@@ -237,6 +237,7 @@ export function createRoot(
     container.nodeType === COMMENT_NODE
       ? (container.parentNode: any)
       : container;
+  // 绑定事件
   listenToAllSupportedEvents(rootContainerElement);
 
   return new ReactDOMRoot(root);

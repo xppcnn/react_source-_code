@@ -265,12 +265,13 @@ export function updateContainer(
       warnIfNotScopedWithMatchingAct(current);
     }
   }
+  // 更新lane
   const lane = requestUpdateLane(current);
 
   if (enableSchedulingProfiler) {
     markRenderScheduled(lane);
   }
-
+  // 获取子树的context
   const context = getContextForSubtree(parentComponent);
   if (container.context === null) {
     container.context = context;
@@ -315,8 +316,7 @@ export function updateContainer(
   }
 
   enqueueUpdate(current, update);
-  scheduleUpdateOnFiber(current, lane, eventTime);
-
+  scheduleUpdateOnFiber(current, lane, eventTime)
   return lane;
 }
 
